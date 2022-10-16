@@ -1,0 +1,30 @@
+write call back example
+change call back to promise
+hoisting
+hoisting example
+sorting program
+palindrom program
+primitive,Non-primitive data type example 
+different between arrow function and normal function
+explain this keyword
+call(), apply() and, bind()
+Closures in JavaScript
+rest parameter and spread operator
+prototype in javascript
+event bubbling
+event capturing
+debouncing
+features in es6
+shallow copy and deep copy
+array methodes 
+
+var a
+console.log(a)
+a=10
+
+
+
+
+
+
+
