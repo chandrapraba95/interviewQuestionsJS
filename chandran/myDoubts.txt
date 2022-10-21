@@ -1,0 +1,16 @@
+Promises, Promise chain
+Class
+Callback
+Async/Await
+prototype in javascript
+event bubbling
+event capturing
+Event delegation
+debouncing
+Throttling
+Inheritance
+Event loop
+First class functions
+Blck scope & shadowing
+Function currying
+Function chain
