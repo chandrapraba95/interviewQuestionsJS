@@ -1,3 +1,4 @@
+//First set
 Promises, Promise chain
 Class
 Callback
@@ -11,6 +12,9 @@ Throttling
 Inheritance
 Event loop
 First class functions
-Blck scope & shadowing
+Block scope & shadowing
 Function currying
 Function chain
+Encapsulation
+Polymorphism
+Abstraction
