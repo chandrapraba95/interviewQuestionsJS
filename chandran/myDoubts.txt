@@ -1,11 +1,11 @@
 //First set
-Promises, Promise chain
+Promises, Promise chain // done
 Class
-Callback
-Async/Await
+Callback 
+Async/Await //done
 prototype in javascript
-event bubbling
-event capturing
+event bubbling //done
+event capturing // done
 Event delegation
 debouncing
 Throttling
