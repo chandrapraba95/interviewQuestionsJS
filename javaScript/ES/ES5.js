@@ -1,6 +1,7 @@
 //1) Data types
 
 //Primitive data type (immutable && that is not an object and has no methods or properties)
+//An immutable value is one whose content cannot be changed without creating an entirely new value. In JavaScript, primitive values are immutable — once a primitive value is created, it cannot be changed, although the variable that holds it may be reassigned another value
 /***********************************/
 //String
 //Number
@@ -65,20 +66,20 @@ for (let i = numbersAsWords.length - 1; i >= 0; i--) {
 //for in loop (used to loop over the properties of an object)
 
 const myWidget = {
-    company: 'ACME',
-    unitsSold: 42000,
-    isModular: true
+  company: 'ACME',
+  unitsSold: 42000,
+  isModular: true
 };
 
 for (const prop in myWidget) {
-    console.log(prop + ': ' + myWidget[prop]);
+  console.log(prop + ': ' + myWidget[prop]);
 }
 
 /***************************************/
 
 //while loop (while loops continue to run until a condition is false)
 
-const i = 1;
+let i = 1;
 while (i <= 3) {
   console.log('Line ' + i);
   i++;
@@ -140,36 +141,53 @@ console.log(numbers3); // [0.5, 1, 2, 4, 8, 16]
 
 //4)Function
 
-// anonymous function
-var myFunction = function() {
+// anonymous function (we use only the function keyword without the function name. it can only be accessed by a variable it is stored in as a function as a value.)
+const myFunction = function() {
     console.log('inside myFunction');
 };
 myFunction();
 
+const fun1 = () => {
+  console.log("Enter")
+};
+fun1();
+
 // named function
 const myReferenceVariable = function myFunction() {
+  console.log (`This is a named function!`);
     console.log('inside myFunction');
 }
 myReferenceVariable()
 
 function add(num1, num2) {
+  console.log (`This is a named function!`);
     return num1 + num2;
 }
 var value = add(4, 9);
 console.log(value); // 13
 
 //Recursive function
+const num = 6;
+let res = 1;
+for(let i = num; i >=1; i--){
+    res = res * i;
+}
+console.log(res);
+
 function factorial(num) {
-    if (num < 0) {
-      return -1;
-    }
-    if (num === 0) {
-      return 1;
-    }
-    return factorial(num - 1) * num;
+    if (num === 0) return 1;
+    return num * factorial(num - 1) ;
 }
 factorial(5); // 120
 
+function fibo(n){
+  const fib = [0, 1];
+  for(let i = 2; i< n; i++){
+    fib[i] = fib[i-1] + fib[i-2]
+  }
+  return fib
+}
+fibo(8);    
 
 function fibonacci(num) {
     if (num < 2) {
@@ -198,6 +216,19 @@ foo(); // Need to call the function to use it
 (function() {
     // do something right now
 })(); // anonymous IIFE - the code inside is executed immediately (no need to call it later)
+
+(() => {
+  console.log("Enter")
+})();
+
+let person10 = {
+  firstName: 'John',
+  lastName: 'Doe'
+};
+
+(function () {
+  console.log(person10.firstName + ' ' + person10.lastName);
+})(person10);
 
 //5)Objects
 

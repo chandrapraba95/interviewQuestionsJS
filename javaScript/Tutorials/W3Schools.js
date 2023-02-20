@@ -267,3 +267,329 @@ function myFunction(a, b) {
 console.log(myFunction(4, 3)) //12
 
 //anonymous function (a function without a name).
+
+const X = function (a, b) {return a * b};
+console.log(X(4, 3));
+
+//Function Hoisting
+myFunction(5);
+
+function myFunction(y) {
+  return y * y;
+}
+
+//anonymous Self-Invoking Functions
+(function () {
+    console.log("Hello!!");  // I will invoke myself
+})();
+
+//Self-Invoking Functions
+(function myFunction() {
+    console.log("Hello!!"); 
+})();
+
+function myFunction1(a, b) {
+    console.log(arguments.length);
+}
+myFunction1(1,2)
+
+//The toString() method returns the function as a string
+function myFunction2(a, b) {
+    return a * b;
+}
+  
+console.log(myFunction2.toString());
+
+//Arrow Functions (Arrow functions do not have their own this)
+const x = (x, y) => x * y;
+
+//Function Parameters
+
+//Default Parameters //ES6 allows function parameters to have default values.
+
+function myFunction(x, y = 10) {
+    console.log(x + y);
+}
+myFunction(5);
+
+//Function Rest Parameter
+
+function sum(...args) {
+    let sum = 0;
+    for (let arg of args) sum += arg;
+    return sum;
+}
+  
+console.log(sum(4, 9, 16, 25, 29, 100, 66, 77));
+
+//Findmax
+function findMax(...args) {
+    let max = 0;
+    for(let i = 0; i < args[0].length; i++) {
+      if (args[0][i] > max) {
+        max = args[0][i];
+      }
+    }
+    return max;
+} 
+  
+console.log(findMax([4, 5, 6]))
+
+//JavaScript call() Method
+//It can be used to invoke (call) a method with an owner object as an argument (parameter).
+const person7 = {
+    fullName: function() {
+      return this.firstName + " " + this.lastName;
+    }
+}
+const person8 = {
+    firstName:"John",
+    lastName: "Doe"
+}
+const person9 = {
+    firstName:"Mary",
+    lastName: "Doe"
+}
+  
+// This will return "John Doe":
+person7.fullName.call(person8);
+// This will return "Mary Doe"
+person7.fullName.call(person9);
+
+//The call() Method with Arguments
+
+const person10 = {
+    fullName: function(city, country) {
+      return this.firstName + " " + this.lastName + "," + city + "," + country;
+    }
+}
+  
+const person11 = {
+    firstName:"John",
+    lastName: "Doe"
+}
+  
+person10.fullName.call(person11, "Chennai", "Tamil Nadu"); //'John Doe,Chennai,Tamil Nadu'
+
+//JavaScript apply() Method
+const person12 = {
+    fullName: function() {
+      return this.firstName + " " + this.lastName;
+    }
+}
+
+const person13 = {
+    firstName: "Mary",
+    lastName: "Doe"
+}
+
+// This will return "Mary Doe":
+person12.fullName.apply(person13);
+
+//The call() method takes arguments separately. The apply() method takes arguments as an array.
+
+//The apply() Method with Arguments
+
+const person14 = {
+    fullName: function(city, country) {
+      return this.firstName + " " + this.lastName + "," + city + "," + country;
+    }
+}
+  
+const person15 = {
+    firstName:"John",
+    lastName: "Doe"
+}
+  
+person14.fullName.apply(person15, ["Chennai", "Tamil Nadu"]); //'John Doe,Chennai,Tamil Nadu'
+
+
+//Function bind()
+//The member object borrows the fullname method from the person object
+
+const person16 = {
+    firstName:"John",
+    lastName: "Doe",
+    fullName: function () {
+      return this.firstName + " " + this.lastName;
+    }
+  }
+  
+  const member = {
+    firstName:"Hege",
+    lastName: "Nilsen",
+  }
+  
+  const fullName = person16.fullName.bind(member);
+  console.log(fullName()); //Hege Nilsen
+
+  //
+  const person17 = {
+    firstName:"John",
+    lastName: "Doe",
+    display: function () {
+      console.log(this.firstName + " " + this.lastName);
+    }
+}
+
+let display = person17.display.bind(person);
+setTimeout(display, 3000); //John Doe
+setTimeout(person17.display, 3000); //undefined undefined
+
+//JavaScript Closures
+
+const add = (function () {
+    let counter = 0;
+    return function () {counter += 1; return counter}
+})();
+  
+add();
+add();
+add();
+
+// the counter is now 3
+//The self-invoking function only runs once. It sets the counter to zero (0), and returns a function expression. This is called a JavaScript closure.
+
+//Class
+//A JavaScript class is not an object. It is a template for JavaScript objects.
+
+class Car {
+    constructor(name, year) {
+      this.name = name;
+      this.year = year;
+    }
+}
+
+const myCar1 = new Car("Ford", 2014); //Car {name: 'Ford', year: 2014}
+const myCar2 = new Car("Audi", 2019); //Car {name: 'Audi', year: 2019}
+
+//The Constructor Method
+//The constructor method is a special method:
+
+//It has to have the exact name "constructor"
+//It is executed automatically when a new object is created
+//It is used to initialize object properties
+//If you do not define a constructor method, JavaScript will add an empty constructor method.
+
+class Car {
+    constructor(brand) {
+      this.carname = brand;
+    }
+    present() {
+      return 'I have a ' + this.carname;
+    }
+}
+  
+class Model extends Car {
+    constructor(brand, mod) {
+      super(brand);
+      this.model = mod;
+    }
+    show() {
+      return this.present() + ', it is a ' + this.model;
+    }
+}
+  
+const myCar = new Model("Ford", "Mustang");
+console.log(myCar.show())
+
+//The super() method refers to the parent class. By calling the super() method in the constructor method, we call the parent's constructor method and gets access to the parent's properties and methods.
+//Unlike functions, and other JavaScript declarations, class declarations are not hoisted.
+
+class Car {
+    constructor(name) {
+      this.name = name;
+    }
+    static hello() {
+      return "Hello!!";
+    }
+}
+  
+const myCar3 = new Car("Ford");
+
+console.log(Car.hello()) //Hello!!
+console.log(myCar3) //Car {name: 'Ford'}
+console.log(myCar3.hello()) //this will raise an error.
+
+//JS Callbacks
+
+//A callback is a function passed as an argument to another function. This technique allows a function to call another function. A callback function can run after another function has finished
+
+function myDisplayer(some) {
+    console.log(some)
+}
+  
+function myCalculator(num1, num2, myCallback) {
+    let sum = num1 + num2;
+    myCallback(sum);
+}
+
+myCalculator(5, 5, myDisplayer);
+
+//Asynchronous JavaScript (Have to refer)
+
+//JavaScript Promise Object
+//Promise Syntax
+const myPromise = new Promise(function(myResolve, myReject) {
+// "Producing Code" (May take some time)
+
+    myResolve(); // when successful
+    myReject();  // when error
+});
+
+// "Consuming Code" (Must wait for a fulfilled Promise)
+myPromise.then(
+    function(value) { /* code if successful */ },
+    function(error) { /* code if some error */ }
+);
+
+//Promise Object Properties
+//While a Promise object is "pending" (working), the result is undefined. When a Promise object is "fulfilled", the result is a value. When a Promise object is "rejected", the result is an error object.
+
+function myDisplayer(some) {
+    console.log(some);
+}
+
+const myPromise1 = new Promise(function(myResolve, myReject) {
+    const x = 0;
+
+    // The producing code (this may take some time)
+
+    if (x == 0) {
+        myResolve("OK");
+    } else {
+        myReject("Error");
+    }
+});
+
+myPromise1.then(
+    function(value) {myDisplayer(value);},
+    function(error) {myDisplayer(error);}
+);
+
+//Waiting for a Timeout
+const myPromise2 = new Promise(function(myResolve, myReject) {
+    setTimeout(function() { myResolve("I love You !!"); }, 3000);
+});
+
+myPromise2.then(function(value) {
+    console.log(value)
+});
+
+//JavaScript Async (Have to refer)
+
+//JSON - Introduction (JSON format is text)
+//JSON.parse() - converting JSON strings into JavaScript objects
+//JSON.stringify() - converting an object into a JSON string
+
+//JSON Values - string, number, object, array, boolean, null
+//JavaScript values - string, number, object, array, boolean, null, function, date, undefined
+
+//Parsing JSON
+const obj = JSON.parse('{"name":"John", "age":30, "city":"New York"}');
+console.log(obj) //{name: 'John', age: 30, city: 'New York'}
+
+//JSON.stringify()
+const obj1 = {name: "John", age: 30, city: "New York"};
+const myJSON = JSON.stringify(obj);
+console.log(myJSON)// '{"name":"John","age":30,"city":"New York"}'

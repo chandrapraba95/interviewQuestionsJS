@@ -75,6 +75,27 @@ letters1.add("c");
 
 console.log(letters1); //Set(3) {"a", "b", "c"}
 
+//Remove duplicates from string
+console.log(Array.from(new Set("aabbccddeeffgg")).toString().replaceAll(',', ''));
+console.log(Array.from(new Set("aabbccddeeffgg")).join(""));
+
+const removeDupChar = (str) => {
+    let char;
+    const charObj = {}, arr = [];
+    for(let i = 0; i < str.length; i++){
+        char = str[i];
+        if(charObj[char]) charObj[char] += 1;
+        charObj[char] = 1;
+    }
+
+    for(const a in charObj){
+        if(charObj[a] === 1) arr.push(a)
+    }
+    return arr.join("");
+}
+
+console.log(removeDupChar("aaaabbbb"))
+
 //Map
 
 //A Map holds key-value pairs where the keys can be any datatype. A Map remembers the original insertion order of the keys. A Map has a property that represents the size of the map.
@@ -129,6 +150,27 @@ console.log(myName1) //Display {name: 'praba'}
 Display1.greeting1() //Hello from static
 
 // 8)Getters & Setters
+//Getters and setters are used to protect your data, particularly when creating classes. A getter method returns its value while a setter method sets or updates its value, getters and setters are also known as accessors and mutators, respectively.
+
+const person = {
+    firstName: "chandra", //Data properties
+    lastName: "praba", //Data properties
+    // fullName() {
+    //     return `${this.firstName} ${this.lastName}`
+    // }
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`
+    },
+    set fullName(value) {
+       const parts = value.split(" ");
+       this.firstName = parts[0];
+       this.lastName = parts[1];
+    }
+}
+
+person.fullName = "Praba chandra"
+
+console.log(person.fullName)
 
 class Display2 {
     constructor(name) {
@@ -149,6 +191,15 @@ console.log(display3.name);
 
 // 9)Inheritance & Method overriding
 
+//Using class inheritance, a class can inherit all the methods and properties of another class. Inheritance is a useful feature that allows code reusability.
+
+//Types of Inheritance in JavaScript
+//Prototypal Inheritance.
+//Pseudoclassical Inheritance.
+//Functional Inheritance.
+//Operator Overloading.
+
+//If a child class has the same method or property name as that of the parent class, it will use the method and property of the child class. This concept is called method overriding.
 class Animal {
     constructor(name) {
         this.name = name;
@@ -165,7 +216,7 @@ class Dog extends Animal {
     }
 
     //Method overriding
-    speak() {
+    bark() {
         console.log(`${this.name} barking`)
     }
 
@@ -176,7 +227,29 @@ const dog = new Dog("Dog")
 dog.speak(); //Dog make noise
 
 //Method overriding
-dog.speak(); //Dog barking
+dog.bark(); //Dog barking
+
+class Car {
+    constructor(brand) {
+      this.carname = brand;
+    }
+    present() {
+      return 'I have a ' + this.carname;
+    }
+}
+  
+class Model extends Car {
+    constructor(brand1, mod) {
+      super(brand1);
+      this.model = mod;
+    }
+    show() {
+      return this.present() + ', it is a ' + this.model;
+    }
+}
+  
+const myCar = new Model("Ford", "Mustang");
+myCar.show()
 
 //ES7
 // 10)Exponentiation Operator
@@ -230,7 +303,7 @@ console.log(name5.padStart(10, "c")) //cccccpraba
 console.log(name5.padEnd(10, "c")) //prabaccccc
 
 //ES8
-// 14)Object.Entries()
+// 14)Object.entries()
 
 const info = {
     name: "praba",
@@ -253,6 +326,7 @@ console.log(Object.entries(info))
 console.log(Object.values(info)); // ['praba', 'chandra', 'praba@gmail.com', 123456789]
 
 // 16)Trailing commas
+//Trailing commas (sometimes called "final commas") can be useful when adding new elements, parameters, or properties to JavaScript code. If you want to add a new property, you can add a new line without modifying the previously last line if that line already uses a trailing comma.
 
 const numberss = [1,2,3,4,];
 console.log(numberss); //[1, 2, 3, 4]

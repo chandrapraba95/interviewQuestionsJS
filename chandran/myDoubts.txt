@@ -18,3 +18,4 @@ Function chain
 Encapsulation
 Polymorphism
 Abstraction
+Javascript generator
